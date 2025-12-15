@@ -1342,11 +1342,20 @@ function populateOperatorFilter(){
   window.db = firebase.firestore();   // <— ΠΟΛΥ ΣΗΜΑΝΤΙΚΟ
 
   console.log("✅ Firebase συνδέθηκε!");
-</script>
+  // ▶ Real-time listener τώρα που υπάρχει db
+const STATE_DOC = "main";
 
-  // --- Μικρό test για να δούμε ότι δουλεύει ---
-  console.log("✅ Firebase συνδέθηκε!");
-</script>
+window.db.collection("state").doc(STATE_DOC).onSnapshot((snap) => {
+  if (!snap.exists) return;
+  const data = snap.data();
+  Object.assign(store, data.store || {});
+  currentOp = data.currentOp || currentOp;
+  hotelsVisible = !!data.hotelsVisible;
+  globalTransfers = Array.isArray(data.globalTransfers) ? data.globalTransfers : [];
+  renderHotelsFor(currentOp);
+  console.log("🔄 Live ενημέρωση από Firestore!");
+});
 
+</script>
 </body>
 </html>
