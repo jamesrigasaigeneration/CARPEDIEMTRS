@@ -1272,5 +1272,32 @@ function populateOperatorFilter(){
   });
 })();
 </script>
+<!-- 🔥 Firebase σύνδεση -->
+<script type="module">
+  // --- Εισαγωγή Firebase βιβλιοθηκών ---
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { 
+    getFirestore, doc, setDoc, getDoc, onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  // --- 🔑 Αντέγραψε ΕΔΩ τα δικά σου στοιχεία από το Firebase console ---
+  const firebaseConfig = {
+   apiKey: "AIzaSyC5IUyUalKimi4uWLN4-y0ufri06EYBBMg",
+  authDomain: "carpe-diem-transfers.firebaseapp.com",
+  projectId: "carpe-diem-transfers",
+  storageBucket: "carpe-diem-transfers.firebasestorage.app",
+  messagingSenderId: "273090430362",
+  appId: "1:273090430362:web:c47922ba05af78a1c12623",
+  measurementId: "G-WEZ30SXMWY"
+  };
+
+  // --- Εκκίνηση εφαρμογής & Firestore ---
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // --- Μικρό test για να δούμε ότι δουλεύει ---
+  console.log("✅ Firebase συνδέθηκε!");
+</script>
+
 </body>
 </html>
